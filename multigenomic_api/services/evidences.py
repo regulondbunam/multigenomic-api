@@ -10,3 +10,5 @@ def find_by_id(id_: str) -> Evidences:
     return base.find_one_by_id(Evidences, id_)
 
 
+def find_one_by_code(code: str) -> Evidences:
+    return Evidences.objects.get(code=code)
