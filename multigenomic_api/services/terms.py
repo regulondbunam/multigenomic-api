@@ -18,3 +18,11 @@ def get_associated_members_ids(id_: str, member_type) -> [str]:
     members = Terms.objects(_id=id_).only("members").first()
     members_ids = members["members"][member_type]
     return members_ids
+
+
+def get_multifun_terms() -> [Terms]:
+    return Terms.objects(ontologies_id="RDBONTOLMTF00001")
+
+
+def get_terms_by_gene_member_id(gene_id) -> [Terms]:
+    return Terms.objects(members__genes=gene_id)

@@ -40,6 +40,7 @@ class RegulatoryInteractions(DynamicDocument, BiologicalBase):
     regulated_entity = fields.EmbeddedDocumentField(RegulatedEntity, required=True, db_field="regulatedEntity")
     regulator = fields.EmbeddedDocumentField(Regulator, required=True)
     regulatory_sites_id = fields.StringField(required=False, db_field="regulatorySites_id")
+    regulation_type = fields.StringField(required=False, db_field="regulationType")
     type = fields.StringField(required=False)
 
     def __init__(self, **kwargs):
