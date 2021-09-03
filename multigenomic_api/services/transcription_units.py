@@ -32,3 +32,7 @@ def get_operons_id_by_gene_id(gene_id: str) -> str:
         raise ValueError
     return operons_id
 
+
+def find_by_terminator_id(terminator_id: str):
+    return TranscriptionUnits.objects(terminators_ids=terminator_id)
+
