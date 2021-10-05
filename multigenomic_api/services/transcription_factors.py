@@ -1,4 +1,5 @@
 from ..models.transcription_factor import TranscriptionFactors
+from mongoengine.queryset.visitor import Q
 from mongoengine.errors import DoesNotExist
 from . import base
 
@@ -19,9 +20,9 @@ def find_tf_id_by_product_id(product_id) -> str or None:
     return TranscriptionFactors.objects(products_ids=product_id)
 
 
-def find_tf_id_by_active_conformation_id(active_conf_id) -> [str] or None:
+def find_tf_id_by_conformation_id(active_conf_id) -> [str] or None:
     try:
-        return TranscriptionFactors.objects(active_conformations__id=active_conf_id)
+        return TranscriptionFactors.objects(Q(active_conformations__id=active_conf_id) | Q(products_ids=active_conf_id))
     except DoesNotExist:
         return None
 
