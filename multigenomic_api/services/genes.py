@@ -1,3 +1,5 @@
+import pymongo
+
 from ..models.genes import Genes
 from . import base
 
@@ -8,6 +10,27 @@ def get_all() -> [Genes]:
 
 def find_by_id(id_: str) -> Genes:
     return base.find_one_by_id(Genes, id_)
+
+
+def find_genes_in_range(left_end_pos: int, right_end_pos: int) -> [Genes]:
+    return Genes.objects(__raw__={"$or": [
+                                      {"$and": [
+                                          {"leftEndPosition": {"$gte": left_end_pos}},
+                                          {"rightEndPosition": {"$lte": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"leftEndPosition": {"$lt": left_end_pos}},
+                                          {"rightEndPosition": {"$gt": left_end_pos, "$lte": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"leftEndPosition": {"$gte": left_end_pos, "$lte": right_end_pos}},
+                                          {"rightEndPosition": {"$gt": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"leftEndPosition": {"$lte": left_end_pos}},
+                                          {"rightEndPosition": {"$gte": right_end_pos}}
+                                      ]}
+                                    ]})
 
 
 def find_by_bnumber(bnumber: str) -> Genes:
