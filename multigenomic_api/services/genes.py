@@ -1,5 +1,3 @@
-import pymongo
-
 from ..models.genes import Genes
 from . import base
 
@@ -12,8 +10,9 @@ def find_by_id(id_: str) -> Genes:
     return base.find_one_by_id(Genes, id_)
 
 
-def find_genes_in_range(left_end_pos: int, right_end_pos: int) -> [Genes]:
-    return Genes.objects(__raw__={"$or": [
+def get_closest_genes_to_central_position(left_end_pos: int, right_end_pos: int, central_pos: float,
+                                          max_distance: int) -> [Genes]:
+    genes = Genes.objects(__raw__={"$or": [
                                       {"$and": [
                                           {"leftEndPosition": {"$gte": left_end_pos}},
                                           {"rightEndPosition": {"$lte": right_end_pos}}
@@ -31,6 +30,15 @@ def find_genes_in_range(left_end_pos: int, right_end_pos: int) -> [Genes]:
                                           {"rightEndPosition": {"$gte": right_end_pos}}
                                       ]}
                                     ]})
+    closest_genes = []
+    for gene in genes:
+        if gene.strand == "forward":
+            if abs(gene.left_end_position - central_pos) < max_distance:
+                closest_genes.append(gene)
+        elif gene.strand == "reverse":
+            if abs(gene.right_end_position - central_pos) < max_distance:
+                closest_genes.append(gene)
+    return closest_genes
 
 
 def find_by_bnumber(bnumber: str) -> Genes:

@@ -25,4 +25,3 @@ def find_tf_id_by_conformation_id(active_conf_id) -> [str] or None:
         return TranscriptionFactors.objects(Q(active_conformations__id=active_conf_id) | Q(products_ids=active_conf_id))
     except DoesNotExist:
         return None
-
