@@ -10,6 +10,43 @@ def find_by_id(id_: str) -> Genes:
     return base.find_one_by_id(Genes, id_)
 
 
+def get_closer_gene_to_position(left_end_pos: int, right_end_pos: int, central_pos: float, strand: str) -> Genes:
+    genes = Genes.objects(__raw__={"$or": [
+                                      {"$and": [
+                                          {"leftEndPosition": {"$gte": left_end_pos}},
+                                          {"rightEndPosition": {"$lte": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"leftEndPosition": {"$lt": left_end_pos}},
+                                          {"rightEndPosition": {"$gt": left_end_pos, "$lte": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"leftEndPosition": {"$gte": left_end_pos, "$lte": right_end_pos}},
+                                          {"rightEndPosition": {"$gt": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"leftEndPosition": {"$lte": left_end_pos}},
+                                          {"rightEndPosition": {"$gte": right_end_pos}}
+                                      ]}
+                                    ]})
+    genes_distance_to_pos = []
+    closest_gene = {}
+    for gene in genes:
+        if strand == "forward":
+            genes_distance_to_pos.append({
+                "gene": gene,
+                "distance": abs(central_pos - gene.left_end_position)
+            })
+        elif strand == "reverse":
+            genes_distance_to_pos.append({
+                "gene": gene,
+                "distance": abs(central_pos - gene.right_end_position)
+            })
+        genes_distance_to_pos.sort(key=lambda x: x.get("distance"))
+        closest_gene = genes_distance_to_pos[0]["gene"]
+    return closest_gene
+
+
 def get_closest_genes_to_central_position(left_end_pos: int, right_end_pos: int, central_pos: float,
                                           max_distance: int) -> [Genes]:
     genes = Genes.objects(__raw__={"$or": [
