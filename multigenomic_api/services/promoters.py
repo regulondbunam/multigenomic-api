@@ -12,3 +12,25 @@ def find_by_id(id_: str) -> Promoters:
 
 def find_by_sigma_factor_id(sigma_factor_id: str) -> Promoters:
     return Promoters.objects(__raw__={"bindsSigmaFactor.sigmaFactors_id": sigma_factor_id})
+
+
+def get_closer_promoters(left_end_pos: int, right_end_pos: int) -> [Promoters]:
+    promoters = Promoters.objects(__raw__={"$or": [
+                                      {"$and": [
+                                          {"transcriptionStartSite.leftEndPosition": {"$gte": left_end_pos}},
+                                          {"transcriptionStartSite.rightEndPosition": {"$lte": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"transcriptionStartSite.leftEndPosition": {"$lt": left_end_pos}},
+                                          {"transcriptionStartSite.rightEndPosition": {"$gt": left_end_pos, "$lte": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"transcriptionStartSite.leftEndPosition": {"$gte": left_end_pos, "$lte": right_end_pos}},
+                                          {"transcriptionStartSite.rightEndPosition": {"$gt": right_end_pos}}
+                                      ]},
+                                      {"$and": [
+                                          {"transcriptionStartSite.leftEndPosition": {"$lte": left_end_pos}},
+                                          {"transcriptionStartSite.rightEndPosition": {"$gte": right_end_pos}}
+                                      ]}
+                                    ]})
+    return promoters

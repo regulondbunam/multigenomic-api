@@ -10,7 +10,7 @@ def find_by_id(id_: str):
     return base.find_one_by_id(Terminators, id_)
 
 
-def get_closer_terminator(left_end_pos: int, right_end_pos: int) -> [Terminators]:
+def get_closer_terminators(left_end_pos: int, right_end_pos: int) -> [Terminators]:
     terminators = Terminators.objects(__raw__={"$or": [
                                       {"$and": [
                                           {"transcriptionTerminationSite.leftEndPosition": {"$gte": left_end_pos}},
