@@ -24,6 +24,5 @@ def get_tf_binding_sites(tf_id: str) -> [RegulatorySites]:
     return reg_sites_of_tf
 
 
-def find_by_sequence(sequence: str) -> RegulatorySites:
-    return RegulatorySites.objects.get(sequence=sequence)
-
+def find_by_sequence(sequence: str) -> [RegulatorySites]:
+    return RegulatorySites.objects(__raw__={"sequence": sequence})

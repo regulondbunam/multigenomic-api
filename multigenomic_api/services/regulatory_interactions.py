@@ -43,3 +43,6 @@ def find_regulatory_interactions_by_reg_entity_id(reg_ent_id: str) -> [Regulator
 def find_by_regulator_id(regulator_id: str) -> [RegulatoryInteractions]:
     return RegulatoryInteractions.objects(__raw__={"regulator._id": regulator_id})
 
+
+def find_by_reg_site(reg_site: str) -> [RegulatoryInteractions]:
+    return RegulatoryInteractions.objects(__raw__={"regulatory_sites_id": reg_site})
