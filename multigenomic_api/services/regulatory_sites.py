@@ -22,3 +22,8 @@ def get_tf_binding_sites(tf_id: str) -> [RegulatorySites]:
             if reg_site not in reg_sites_of_tf:
                 reg_sites_of_tf.append(reg_site)
     return reg_sites_of_tf
+
+
+def find_by_sequence(sequence: str) -> RegulatorySites:
+    return RegulatorySites.objects.get(sequence=sequence)
+
