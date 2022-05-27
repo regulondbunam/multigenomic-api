@@ -79,7 +79,7 @@ def get_closest_genes_to_central_position(left_end_pos: int, right_end_pos: int,
 
 
 def find_by_bnumber(bnumber: str) -> Genes:
-    return Genes.objects(bnumber=bnumber)
+    return Genes.objects.get(bnumber=bnumber)
 
 
 def find_by_bnumbers(bnumbers: [str]) -> [Genes]:
