@@ -10,6 +10,6 @@ class RegulatoryContinuants(DynamicDocument, BiologicalBase):
     type = fields.StringField(required=False)
 
     def __init__(self, **kwargs):
-        super().__init__(kwargs)
+        super().__init__(**kwargs)
 
     meta = {'collection': 'regulatoryContinuants'}
