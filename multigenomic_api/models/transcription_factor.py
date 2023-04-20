@@ -20,8 +20,8 @@ class TranscriptionFactors(DynamicDocument, BiologicalBase):
     products_ids = fields.ListField(fields.StringField(), db_field="products_ids")
     sensing_class = fields.StringField(required=False, db_field="sensingClass")
     site_length = fields.ListField(fields.StringField(), db_field="siteLength")
-    symmetry = fields.StringField(fields.StringField(), db_field="symmetry")
-    family = fields.StringField(fields.StringField(), db_field="family")
+    symmetry = fields.StringField(required=False, db_field="symmetry")
+    family = fields.StringField(required=False, db_field="family")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
