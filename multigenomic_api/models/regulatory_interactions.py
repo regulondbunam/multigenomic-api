@@ -35,6 +35,7 @@ class Regulator(DynamicEmbeddedDocument):
 
 class RegulatoryInteractions(DynamicDocument, BiologicalBase):
     absolute_center_position = fields.FloatField(required=False, db_field="absoluteCenterPosition")
+    dist_site_promoter = fields.FloatField(required=False, db_field="relativeDistSitePromoter")
     evidence_class = fields.StringField(required=False, db_field="evidenceClass")
     function = fields.StringField(required=False)
     mechanism = fields.StringField(required=False)
