@@ -18,6 +18,7 @@ from .services import terminators
 from .services import transcription_factors
 from .services import regulatory_sites
 from .services import transcription_units
+from .services import regulators
 
 
 def connect(database, uri):

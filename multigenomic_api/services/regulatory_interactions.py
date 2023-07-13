@@ -11,10 +11,10 @@ def find_by_id(id_: str) -> RegulatoryInteractions:
 
 
 def find_by_regulated_entity_ids(regulated_entity_ids: [str]) -> [RegulatoryInteractions]:
-    regulatery_interactions = []
+    regulatory_interactions = []
     for regulated_entity_id in regulated_entity_ids:
-        regulatery_interactions.append(RegulatoryInteractions.objects.filter(RegulatoryInteractions={"_id": regulated_entity_id}))
-    return regulatery_interactions
+        regulatory_interactions.extend(RegulatoryInteractions.objects(__raw__={"regulatedEntity._id": regulated_entity_id}))
+    return regulatory_interactions
 
 
 def find_regulator_by_regulated_entity_id(regulated_entity_id: str) -> [RegulatoryInteractions.regulator]:

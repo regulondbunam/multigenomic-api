@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='multigenomic_api',
-    version='1.0',
+    version='1.1',
     description='API for RegulonDB Multigenomic DB',
     author='Pablo Pena',
     author_email='pablopl@ccg.unam.mx',
