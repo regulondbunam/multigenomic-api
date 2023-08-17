@@ -30,6 +30,8 @@ class Genes(DynamicDocument, BiologicalBase):
     interrupted = fields.BooleanField(required=False)
     terms = fields.EmbeddedDocumentListField(Terms, required=False)
     type = fields.StringField(required=False)
+    confidence_level = fields.StringField(required=False, db_field="confidenceLevel")
+    additive_evidences_ids = fields.ListField(required=False, db_field="additiveEvidences")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

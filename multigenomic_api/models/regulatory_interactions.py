@@ -44,6 +44,8 @@ class RegulatoryInteractions(DynamicDocument, BiologicalBase):
     regulatory_sites_id = fields.StringField(required=False, db_field="regulatorySites_id")
     regulation_type = fields.StringField(required=False, db_field="regulationType")
     type = fields.StringField(required=False)
+    confidence_level = fields.StringField(required=False, db_field="confidenceLevel")
+    additive_evidences_ids = fields.ListField(required=False, db_field="additiveEvidences")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

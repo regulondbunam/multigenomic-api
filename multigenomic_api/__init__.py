@@ -19,10 +19,11 @@ from .services import transcription_factors
 from .services import regulatory_sites
 from .services import transcription_units
 from .services import regulators
+from .services import additive_evidences
 
 
 def connect(database, uri):
-    mongoengine.connect(database, host=uri, authSource="admin")
+    mongoengine.connect(database, host=uri, authSource="admin", tz_aware=True)
 
 
 def disconnect():

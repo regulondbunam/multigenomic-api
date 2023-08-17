@@ -39,6 +39,8 @@ class Promoters(DynamicDocument, BiologicalBase):
     score = fields.FloatField(required=False)
     transcription_start_site = fields.EmbeddedDocumentField(TranscriptionStartSite, required=False, db_field="transcriptionStartSite")
     confidence_level = fields.StringField(required=False, db_field="confidenceLevel")
+    confidence_level = fields.StringField(required=False, db_field="confidenceLevel")
+    additive_evidences_ids = fields.ListField(required=False, db_field="additiveEvidences")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
