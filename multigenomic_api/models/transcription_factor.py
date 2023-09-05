@@ -13,6 +13,7 @@ class Conformations(EmbeddedDocument):
 
 
 class TranscriptionFactors(DynamicDocument, BiologicalBase):
+    abbreviated_name = fields.StringField(required=False, db_field="abbreviatedName")
     active_conformations = fields.EmbeddedDocumentListField(Conformations, required=True, db_field="activeConformations")
     connectivity_class = fields.StringField(required=False, db_field="connectivityClass")
     global_function = fields.StringField(required=True, db_field="globalFunction")
