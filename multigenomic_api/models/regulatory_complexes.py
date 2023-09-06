@@ -6,7 +6,7 @@ from .biological_base import BiologicalBase
 
 
 class Products(DynamicEmbeddedDocument):
-    product_id = fields.StringField(required=True)
+    products_id = fields.StringField(required=True)
     coefficient = fields.IntField(required=False)
     meta = {'abstract': True}
 
