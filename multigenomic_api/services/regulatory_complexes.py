@@ -11,7 +11,7 @@ def find_by_id(id_: str) -> RegulatoryComplexes:
 
 
 def find_by_name(name: str) -> RegulatoryComplexes:
-    return RegulatoryComplexes.objects.get(abbreviated_name=name)
+    return RegulatoryComplexes.objects.get(name=name)
 
 
 def find_by_product_id(product_id) -> str or None:
