@@ -13,7 +13,10 @@ def find_by_id(id_: str) -> TranscriptionFactors:
 
 
 def find_by_name(name: [str]) -> [TranscriptionFactors]:
-    return TranscriptionFactors.objects().filter(name=name)
+    try:
+        return TranscriptionFactors.objects.get(name=name)
+    except DoesNotExist:
+        return None
 
 
 def find_tf_id_by_product_id(product_id) -> str or None:
