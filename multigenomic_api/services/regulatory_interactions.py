@@ -10,6 +10,10 @@ def find_by_id(id_: str) -> RegulatoryInteractions:
     return base.find_one_by_id(RegulatoryInteractions, id_)
 
 
+def find_by_evidence_id(ev_id: str) -> RegulatoryInteractions:
+    return base.find_by_evidence_id(RegulatoryInteractions, ev_id)
+
+
 def find_by_regulated_entity_ids(regulated_entity_ids: [str]) -> [RegulatoryInteractions]:
     regulatory_interactions = []
     for regulated_entity_id in regulated_entity_ids:

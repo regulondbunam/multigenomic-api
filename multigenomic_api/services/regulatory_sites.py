@@ -12,6 +12,10 @@ def find_by_id(id_: str) -> RegulatorySites:
     return base.find_one_by_id(RegulatorySites, id_)
 
 
+def find_by_evidence_id(ev_id: str) -> RegulatorySites:
+    return base.find_by_evidence_id(RegulatorySites, ev_id)
+
+
 def get_tf_binding_sites(tf_id: str) -> [RegulatorySites]:
     reg_sites_of_tf = []
     tf = find_tf_by_id(tf_id)

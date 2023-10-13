@@ -12,6 +12,10 @@ def find_by_id(id_: str) -> TranscriptionFactors:
     return base.find_one_by_id(TranscriptionFactors, id_)
 
 
+def find_by_evidence_id(ev_id: str) -> TranscriptionFactors:
+    return base.find_by_evidence_id(TranscriptionFactors, ev_id)
+
+
 def find_by_name(name: [str]) -> [TranscriptionFactors]:
     try:
         return TranscriptionFactors.objects.get(name=name)
