@@ -24,5 +24,9 @@ def get_multifun_terms() -> [Terms]:
     return Terms.objects(ontologies_id="RDBONTOLMTF00001")
 
 
+def get_by_subclass_id(term_id: str) -> [Terms]:
+    return Terms.objects(sub_class_of=term_id)
+
+
 def get_terms_by_gene_member_id(gene_id) -> [Terms]:
     return Terms.objects(members__genes=gene_id)
