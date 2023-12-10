@@ -1,5 +1,5 @@
 def get_all(model):
-    return model.objects.timeout(False)
+    return model.objects.timeout(False).order_by('id')
 
 
 def find_one_by_id(model, object_id: str):

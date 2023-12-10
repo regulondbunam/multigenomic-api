@@ -1,6 +1,7 @@
 from mongoengine import fields
 from mongoengine import DynamicDocument
 from mongoengine import DynamicEmbeddedDocument
+from mongoengine import EmbeddedDocument
 
 from .base import Base
 
@@ -24,11 +25,15 @@ class Definition(DynamicEmbeddedDocument):
 
     meta = {'abstract': True}
 
+class ExternalCrossReferences(EmbeddedDocument):
+    external_cross_references_id = fields.StringField(required=False, db_field="externalCrossReferences_id")
+    object_id = fields.StringField(required=False, db_field="objectId")
 
 class Terms(DynamicDocument, Base):
     created_by = fields.EmbeddedDocumentField(CreatedBy, required=False, db_field="createdBy")
     definition = fields.EmbeddedDocumentField(Definition, required=False)
     description = fields.StringField(required=False)
+    external_cross_references = fields.EmbeddedDocumentListField(ExternalCrossReferences, db_field="externalCrossReferences")
     has_db_x_ref = fields.ListField(fields.StringField(), required=False, db_field="hasDbXRef")
     has_obo_namespace = fields.StringField(required=False, db_field="hasOboNamespace")
     has_related_synonyms = fields.ListField(fields.StringField(), required=False, db_field="hasRelatedSynonyms")
