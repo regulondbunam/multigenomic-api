@@ -23,6 +23,11 @@ def get_associated_members_ids(id_: str, member_type) -> [str]:
 def get_multifun_terms() -> [Terms]:
     return Terms.objects(ontologies_id="RDBONTOLMTF00001")
 
+def get_go_terms() -> [Terms]:
+    return Terms.objects(ontologies_id="RDBONTOLGON00001")
+
+def get_mco_terms() -> [Terms]:
+    return Terms.objects(ontologies_id="RDBONTOLMCO00001")
 
 def get_by_subclass_id(term_id: str) -> [Terms]:
     return Terms.objects(sub_class_of=term_id)
