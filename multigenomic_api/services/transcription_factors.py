@@ -23,6 +23,13 @@ def find_by_name(name: [str]) -> [TranscriptionFactors]:
         return None
 
 
+def find_by_abb_name(abbreviated_name: [str]) -> [TranscriptionFactors]:
+    try:
+        return TranscriptionFactors.objects.get(abbreviated_name=abbreviated_name)
+    except DoesNotExist:
+        return None
+
+
 def find_tf_id_by_product_id(product_id) -> str or None:
     return TranscriptionFactors.objects(products_ids=product_id)
 
