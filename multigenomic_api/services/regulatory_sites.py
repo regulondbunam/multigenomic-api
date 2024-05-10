@@ -22,9 +22,10 @@ def get_tf_binding_sites(tf_id: str) -> [RegulatorySites]:
     for active_conformation in tf.active_conformations:
         reg_ints = find_reg_ints_by_regulator_id(active_conformation.id)
         for ri in reg_ints:
-            reg_site = find_by_id(ri.regulatory_sites_id)
-            if reg_site not in reg_sites_of_tf:
-                reg_sites_of_tf.append(reg_site)
+            if ri.regulatory_sites_id:
+                reg_site = find_by_id(ri.regulatory_sites_id)
+                if reg_site not in reg_sites_of_tf:
+                    reg_sites_of_tf.append(reg_site)
     return reg_sites_of_tf
 
 
