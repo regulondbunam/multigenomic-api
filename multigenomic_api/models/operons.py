@@ -22,6 +22,7 @@ class RegulationPositions(DynamicEmbeddedDocument):
 
 class Operons(DynamicDocument, BiologicalBase):
     regulation_positions = fields.EmbeddedDocumentField(RegulationPositions, required=False, db_field="regulationPositions")
+    organisms_id = fields.StringField(db_field="organisms_id")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

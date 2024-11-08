@@ -14,6 +14,7 @@ class Motifs(DynamicDocument, BiologicalBase):
     products_id = fields.StringField(required=False)
     residue_number = fields.ListField(fields.IntField(), required=False, db_field="residueNumber")
     type = fields.StringField(required=False)
+    organisms_id = fields.StringField(db_field="organisms_id")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
