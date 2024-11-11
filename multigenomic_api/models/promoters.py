@@ -37,10 +37,12 @@ class Promoters(DynamicDocument, BiologicalBase):
     boxes = fields.EmbeddedDocumentListField(Boxes, required=False, db_field="boxes")
     pos1 = fields.IntField(required=False)
     score = fields.FloatField(required=False)
-    transcription_start_site = fields.EmbeddedDocumentField(TranscriptionStartSite, required=False, db_field="transcriptionStartSite")
+    transcription_start_site = fields.EmbeddedDocumentField(TranscriptionStartSite, required=False,
+                                                            db_field="transcriptionStartSite")
     confidence_level = fields.StringField(required=False, db_field="confidenceLevel")
     additive_evidences_ids = fields.ListField(required=False, db_field="additiveEvidences")
     organisms_id = fields.StringField(db_field="organisms_id")
+    distance_to_gene = fields.StringField(db_field="distanceToGene")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
