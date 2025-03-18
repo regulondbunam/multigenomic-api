@@ -9,6 +9,9 @@ def get_all():
 def find_by_id(id_: str):
     return base.find_one_by_id(Terminators, id_)
 
+def find_by_evidence_id(ev_id: str) -> Terminators:
+    return base.find_by_evidence_id(Terminators, ev_id)
+
 
 def get_closer_terminators(left_end_pos: int, right_end_pos: int) -> [Terminators]:
     terminators = Terminators.objects(__raw__={"$or": [

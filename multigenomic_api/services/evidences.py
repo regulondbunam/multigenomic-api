@@ -16,3 +16,6 @@ def find_one_by_code_rule(code: str) -> Evidences:
 
 def find_one_by_code(code: str) -> Evidences:
     return Evidences.objects.get(code=code)
+
+def find_by_head(head: str) -> [Evidences]:
+    return Evidences.objects(head=head)

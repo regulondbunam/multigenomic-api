@@ -69,7 +69,9 @@ def get_closest_genes_to_central_position(left_end_pos: int, right_end_pos: int,
                                     ]})
     closest_genes = []
     for gene in genes:
-        if gene.strand == "forward":
+        if (gene.left_end_position < central_pos) and (gene.right_end_position > central_pos):
+            closest_genes.append(gene)
+        elif gene.strand == "forward":
             if abs(gene.left_end_position - central_pos) < max_distance:
                 closest_genes.append(gene)
         elif gene.strand == "reverse":

@@ -11,6 +11,6 @@ class AdditiveEvidences(DynamicDocument, Base):
     confidence_level = fields.StringField(required=False, db_field="confidenceLevel")
     rules = fields.ListField(fields.StringField(), required=False)
     evidences_ids = fields.ListField(fields.StringField(), required=False, db_field="evidencesIds")
-    additive_evidences_ids = fields.ListField(fields.StringField, require=False, db_field="additiveEvidences")
+    additive_evidences_ids = fields.ListField(fields.StringField(), require=False, db_field="additiveEvidences")
 
     meta = {'collection': 'additiveEvidences'}
