@@ -14,5 +14,9 @@ def find_by_conformation(conf_id: str) -> [Regulators]:
     return Regulators.objects(__raw__={"conformations._id": conf_id})
 
 
+def find_by_abbr_name(abbr_name: str) -> Regulators:
+    return Regulators.objects.get(abbreviated_name=abbr_name)
+
+
 def find_by_evidence_id(ev_id: str) -> Regulators:
     return base.find_by_evidence_id(Regulators, ev_id)
