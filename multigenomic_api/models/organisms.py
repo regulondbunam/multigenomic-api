@@ -10,6 +10,6 @@ class Organisms(DynamicDocument, Base):
     url = fields.StringField(required=False)
 
     def __init__(self, **kwargs):
-        super().__init__()
+        super().__init__(**kwargs)
 
     meta = {'collection': 'organisms'}
